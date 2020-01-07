@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flipkart</title>
+    <style>
+        img {max-width: 100%; display: block;height: auto;}
+        .column {display: flex;}
+        .main {max-width: 430px;}
+        .thumb {border: 1px solid #fff;cursor: pointer;width: 85px;}
+        .thumbnails-content {padding: 0 30px;}
+        .thumbnails-content img {list-style: none;padding: 10px 0;}
+        .border {border: 1px solid red;}
+    </style>
+</head>
+<body onload="get();">
+    <main>
+        <section class="body-container" id="product">
+            <div class="body-inner-container">
+              <div class="column" id="one">
+                <div class="thumbnails ">
+                  <div class="thumbnails-content">
+                     
+                        <img class="thumb border" onmouseover="quick(this);" src="img/121/image-1.jpeg" alt="Image 1"/>
+                    
+                  
+                        <img class="thumb border" onmouseover="quick(this);" src="img/121/image-2.jpeg" alt="Image 2"/>
+                   
+                 
+                        <img class="thumb border" onmouseover="quick(this);" src="img/121/image-3.jpeg" alt="Image 3"/>
+                  
+                  </div>
+                </div>
+                <div class="main-image">
+                    <img class="main" src="img/122/image-1.jpeg">
+                    <div class="view">
+                        <img src="" />
+                    </div>
+                </div>
+              </div>
+            </div>
+        </section>          
+    </main>
+    <footer>
+        <script>
+  
+            get = ()=> {
+				all_para = document.querySelectorAll(".thumb");
+				console.log(all_para);
+
+				all_para.forEach(function(val,index) {
+					console.log(val,index);
+						val.classList.remove("border");
+				})
+			};
+
+            quick = (curele)=> {
+                //console.log(curele);
+                curele.classList.add("border");
+
+                // ans = curele.getAttribute("src");
+                // newans = ans.replace(121,122);
+                // document.querySelector(".main").setAttribute("src",newans);
+
+                // console.log(curele.nextElementSibling);
+                // ans1 = curele.nextElementSibling;
+                // ans1.classList.remove("border")
+                isExist = document.getElementsByClassName('border');
+                console.log(isExist);
+                
+            }
+        </script>
+    </footer>
+</body>
+</html>
