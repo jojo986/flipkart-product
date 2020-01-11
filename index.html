@@ -11,7 +11,8 @@
         .main {max-width: 430px;}
         .thumb {border: 1px solid #fff;cursor: pointer;width: 85px;}
         .thumbnails-content {padding: 0 30px;}
-        .thumbnails-content img {list-style: none;padding: 10px 0;}
+        .thumbnails-content img {padding: 10px 0;}
+        ul li {list-style: none;}
         .border {border: 1px solid red;}
     </style>
 </head>
@@ -21,17 +22,17 @@
             <div class="body-inner-container">
               <div class="column" id="one">
                 <div class="thumbnails ">
-                  <div class="thumbnails-content">
-                     
-                        <img class="thumb border" onmouseover="quick(this);" src="img/121/image-1.jpeg" alt="Image 1"/>
-                    
-                  
-                        <img class="thumb border" onmouseover="quick(this);" src="img/121/image-2.jpeg" alt="Image 2"/>
-                   
-                 
-                        <img class="thumb border" onmouseover="quick(this);" src="img/121/image-3.jpeg" alt="Image 3"/>
-                  
-                  </div>
+                  <ul class="thumbnails-content">
+                     <li class="border">
+                        <img class="thumb" onmouseover="quick(this);" src="img/121/image-1.jpeg" alt="Image 1"/>
+                     </li>
+                     <li class="border">
+                        <img class="thumb" onmouseover="quick(this);" src="img/121/image-2.jpeg" alt="Image 2"/>
+                     </li>
+                     <li class="border">  
+                        <img class="thumb" onmouseover="quick(this);" src="img/121/image-3.jpeg" alt="Image 3"/>
+                     </li>
+                    </ul>
                 </div>
                 <div class="main-image">
                     <img class="main" src="img/122/image-1.jpeg">
@@ -47,29 +48,31 @@
         <script>
   
             get = ()=> {
-				all_para = document.querySelectorAll(".thumb");
-				console.log(all_para);
+				all_para = document.querySelectorAll(".thumbnails-content li");
+				//console.log(all_para);
 
 				all_para.forEach(function(val,index) {
 					console.log(val,index);
-						val.classList.remove("border");
+					val.classList.remove("border");
 				})
 			};
 
             quick = (curele)=> {
-                //console.log(curele);
-                curele.classList.add("border");
+                ans = curele.parentElement;
+                ans1 = ans.className; 
+                //console.log(ans1);
 
-                // ans = curele.getAttribute("src");
-                // newans = ans.replace(121,122);
-                // document.querySelector(".main").setAttribute("src",newans);
+                if(ans != 'border') {
+					all_para.forEach(function(val,index) {
+						val.classList.remove('border');
+					})
+					ans.classList.add('border');
+				}
 
-                // console.log(curele.nextElementSibling);
-                // ans1 = curele.nextElementSibling;
-                // ans1.classList.remove("border")
-                isExist = document.getElementsByClassName('border');
-                console.log(isExist);
-                
+                ans2 = curele.getAttribute("src");
+                newans = ans2.replace(121,122);
+                console.log(ans2)
+                document.querySelector(".main").setAttribute("src",newans);         
             }
         </script>
     </footer>
