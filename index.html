@@ -11,8 +11,14 @@
         .main {max-width: 430px;}
         .thumb {border: 1px solid #fff;cursor: pointer;width: 85px;}
         .thumbnails-content {padding: 0 30px;}
-        .thumbnails-content img {list-style: none;padding: 10px 0;}
+        .thumbnails-content img {padding: 10px 0;}
+        #main-image {position: relative;}
+        ul li {list-style: none;}
         .border {border: 1px solid red;}
+        #view {width: 200px;height: 200px; border:1px solid;overflow: hidden;position: absolute;top: 0; right:-80%;}
+        #viewimg {position: absolute;}
+
+
     </style>
 </head>
 <body onload="get();">
@@ -21,22 +27,22 @@
             <div class="body-inner-container">
               <div class="column" id="one">
                 <div class="thumbnails ">
-                  <div class="thumbnails-content">
-                     
-                        <img class="thumb border" onmouseover="quick(this);" src="img/121/image-1.jpeg" alt="Image 1"/>
-                    
-                  
-                        <img class="thumb border" onmouseover="quick(this);" src="img/121/image-2.jpeg" alt="Image 2"/>
-                   
-                 
-                        <img class="thumb border" onmouseover="quick(this);" src="img/121/image-3.jpeg" alt="Image 3"/>
-                  
-                  </div>
+                  <ul class="thumbnails-content">
+                     <li class="border">
+                        <img class="thumb" onmouseover="quick(this);" src="img/121/image-1.jpeg" alt="Image 1"/>
+                     </li>
+                     <li class="border">
+                        <img class="thumb" onmouseover="quick(this);" src="img/121/image-2.jpeg" alt="Image 2"/>
+                     </li>
+                     <li class="border">  
+                        <img class="thumb" onmouseover="quick(this);" src="img/121/image-3.jpeg" alt="Image 3"/>
+                     </li>
+                    </ul>
                 </div>
-                <div class="main-image">
-                    <img class="main" src="img/122/image-1.jpeg">
-                    <div class="view">
-                        <img src="" />
+                <div id="main-image">
+                    <img class="main" onmousemove="zoom(event);" onmouseout="none();" src="img/122/image-1.jpeg">
+                    <div id="view">
+                        <img id="viewimg" width="400px" height="400px" src="img/121/image-1.jpeg" />
                     </div>
                 </div>
               </div>
@@ -47,29 +53,51 @@
         <script>
   
             get = ()=> {
-				all_para = document.querySelectorAll(".thumb");
-				console.log(all_para);
+				all_para = document.querySelectorAll(".thumbnails-content li");
+				//console.log(all_para);
 
 				all_para.forEach(function(val,index) {
-					console.log(val,index);
-						val.classList.remove("border");
+					//console.log(val,index);
+					val.classList.remove("border");
 				})
 			};
 
             quick = (curele)=> {
-                //console.log(curele);
-                curele.classList.add("border");
+                ans = curele.parentElement;
+                ans1 = ans.className; 
+                //console.log(ans1);
 
-                // ans = curele.getAttribute("src");
-                // newans = ans.replace(121,122);
-                // document.querySelector(".main").setAttribute("src",newans);
+                if(ans != 'border') {
+					all_para.forEach(function(val,index) {
+						val.classList.remove('border');
+					})
+					ans.classList.add('border');
+				}
 
-                // console.log(curele.nextElementSibling);
-                // ans1 = curele.nextElementSibling;
-                // ans1.classList.remove("border")
-                isExist = document.getElementsByClassName('border');
-                console.log(isExist);
-                
+                ans2 = curele.getAttribute("src");
+                newans = ans2.replace(121,122);
+                //console.log(ans2)
+                document.querySelector(".main").setAttribute("src",newans);         
+            }
+
+            zoom = (ev)=> {
+                document.getElementById("view").style.display = "block";
+                zoomimg = document.querySelector(".main").getAttribute("src");
+                document.getElementById("viewimg").setAttribute("src",zoomimg);
+
+                x = ev.pageX;
+                y = ev.pageY;
+                console.log(x,y);
+
+                x1  = -x*4;
+		        y1  = -y*4;
+
+                document.querySelector("#viewimg").style.left = x1;
+                document.querySelector("#viewimg").style.top = y1;
+            }
+
+            none = ()=> {
+                //document.getElementById("view").style.display = "none";
             }
         </script>
     </footer>
