@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Flipkart</title>
     <style>
-        img {max-width: 100%; display: block;height: auto;}
+       
         .column {display: flex;}
         .main {max-width: 430px;}
         .thumb {border: 1px solid #fff;cursor: pointer;width: 85px;}
@@ -14,12 +12,12 @@
         .thumbnails-content img {padding: 10px 0;}
         ul li {list-style: none;}
         .border {border: 1px solid red;}
-        #view {width: 200px;height: 200px; border:1px solid;overflow: hidden;position: absolute;top: 0; right:-80%;}
+        #view {width: 200px;height: 200px; border:1px solid;overflow: hidden;position: absolute;right: -200px; top: 0;}
         #viewimg {position: absolute;}
 
 
     </style>
-</head>
+
 <body onload="get();">
     <main>
         <section class="body-container" id="product">
@@ -38,7 +36,7 @@
                      </li>
                     </ul>
                 </div>
-                <div id="main-image">
+                <div id="main-image" style="position: relative;">
                     <img class="main" onmousemove="zoom(event);" onmouseout="none();" src="img/122/image-1.jpeg">
                     <div id="view">
                         <img id="viewimg" width="400px" height="400px" src="img/121/image-1.jpeg" />
@@ -88,17 +86,16 @@
                 y = ev.pageY;
                 console.log(x,y);
 
-                x1  = -x*4;
-		        y1  = -y*4;
+                x1  = -x*1;
+		        y1  = -y*1;
 
                 document.querySelector("#viewimg").style.left = x1;
                 document.querySelector("#viewimg").style.top = y1;
             }
 
             none = ()=> {
-                //document.getElementById("view").style.display = "none";
+                document.getElementById("view").style.display = "none";
             }
         </script>
     </footer>
 </body>
-</html>
